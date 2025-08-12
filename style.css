@@ -1,0 +1,202 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 將內容從頂部開始排列 */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* 確保 padding 不會增加元素總寬度 */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* 限制容器最大寬度 */
+    text-align: center;
+}
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.records-section, .chart-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    position: relative; /* 如果 canvas 需要絕對定位，父容器需要相對定位 */
+    height: 400px; /* 設定一個固定高度或最大高度 */
+    overflow: hidden; /* 如果內容超出高度，隱藏溢出部分 */
+}
+
+#sleepRecords {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-height: 300px; /* 限制記錄列表的高度 */
+    overflow-y: auto; /* 超出高度時顯示滾動條 */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fcfcfc;
+}
+
+#sleepRecords li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05em;
+}
+
+#sleepRecords li:last-child {
+    border-bottom: none;
+}
+
+#sleepRecords li .date {
+    font-weight: bold;
+    color: #555;
+}
+
+#sleepRecords li.short-sleep {
+    color: red;
+}
+
+#sleepRecords li.good-sleep {
+    color: green;
+}
+
+#sleepChart {
+    max-width: 100%; /* 確保圖表不會超出容器 */
+    height: auto; /* 保持圖表比例 */
+     max-height: 350px; /* 限制圖表的最大高度，避免無限放大 */
+}
+
+/* 刪除按鈕樣式 */
+.delete-button {
+    background-color: #f44336; /* 紅色 */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* 防止按鈕被壓縮 */
+}
+
+.delete-button:hover {
+    background-color: #da190b;
+}
+
+#sleepChart {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Modal (確認彈出視窗) 樣式 */
+.modal {
+    display: none; /* 預設隱藏 */
+    position: fixed; /* 固定位置，覆蓋整個頁面 */
+    z-index: 1000; /* 置於頂層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 允許滾動 */
+    background-color: rgba(0,0,0,0.5); /* 半透明黑色背景 */
+    display: flex; /* 使用 flexbox 居中內容 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px; /* 最大寬度 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.yes-button {
+    background-color: #f44336; /* 紅色，表示危險操作 */
+    color: white;
+}
+
+.yes-button:hover {
+    background-color: #da190b;
+}
+
+.no-button {
+    background-color: #5cb85c; /* 綠色，表示安全操作 */
+    color: white;
+}
+
+.no-button:hover {
+    background-color: #4cae4c;
+}
+
+/* Custom Alert 樣式 */
+#customAlert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    z-index: 2000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 1em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
