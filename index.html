@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛌我的睡眠記錄器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>睡眠記錄器</h1>
+
+        <div class="controls">
+            <button id="sleepButton">入睡</button>
+            <button id="wakeButton" disabled>起床</button>
+        </div>
+
+        <div class="records-section">
+            <h2>使用紀錄</h2>
+            <ul id="sleepRecords">
+                <!-- 睡眠記錄將由 JavaScript 動態載入到這裡 -->
+            </ul>
+        </div>
+
+        <div class="chart-section">
+            <h2>睡眠時數折線圖</h2>
+            <canvas id="sleepChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 確認刪除的彈出視窗 (Modal) -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>確定要刪除這筆睡眠記錄嗎？</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="yes-button">是</button>
+                <button id="confirmNo" class="no-button">否</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部 JavaScript 庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 你的應用程式邏輯 -->
+    <script src="script.js"></script>
+</body>
+</html>
