@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的睡眠記錄器</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- iPhone 主畫面 Icon 設定開始 -->
+    <!-- 啟用全螢幕模式，讓網頁看起來像原生 App -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 設定狀態列的樣式 (可選，通常為 default, black, black-translucent) -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 設定主畫面應用程式的名稱 -->
+    <meta name="apple-mobile-web-app-title" content="睡眠記錄">
+    <!-- 設定 iPhone 主畫面 Icon -->
+    <!-- 使用 Base64 編碼的 SVG 嵌入 🛌 Emoji -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtc2l6ZT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJjZW50cmFsIj7wnoO8PC90ZXh0Pjwvc3ZnPg==">
+    <!-- iPhone 主畫面 Icon 設定結束 -->
+
+</head>
+<body>
+    <div class="container">
+        <h1>睡眠記錄器</h1>
+
+        <div class="controls">
+            <button id="sleepButton">入睡</button>
+            <button id="wakeButton" disabled>起床</button>
+        </div>
+
+        <div class="records-section">
+            <h2>使用紀錄</h2>
+            <ul id="sleepRecords">
+                <!-- 睡眠記錄將由 JavaScript 動態載入到這裡 -->
+            </ul>
+        </div>
+
+        <div class="chart-section">
+            <h2>睡眠時數折線圖</h2>
+            <canvas id="sleepChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 確認刪除的彈出視窗 (Modal) -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>確定要刪除這筆睡眠記錄嗎？</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="yes-button">是</button>
+                <button id="confirmNo" class="no-button">否</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部 JavaScript 庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 你的應用程式邏輯 -->
+    <script src="script.js"></script>
+</body>
+</html>
